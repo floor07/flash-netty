@@ -45,8 +45,9 @@ public class NettyClient {
                     public void initChannel(SocketChannel ch) {
                         // 空闲检测
                         ch.pipeline().addLast(new IMIdleStateHandler());
-
+                        // 拆包器
                         ch.pipeline().addLast(new Spliter());
+                        // 编码器
                         ch.pipeline().addLast(new PacketDecoder());
                         // 登录响应处理器
                         ch.pipeline().addLast(new LoginResponseHandler());
